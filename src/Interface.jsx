@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { pointsOfInterest } from "./poi.js";
 import useRoom from "./store/useRoom.js";
 
@@ -28,7 +28,7 @@ export default function Interface() {
     <>
       <div className="navWrapper">
         <div className="poiWrapper">
-          <h1>Hauptgebäude</h1>
+          <h1>Firmengebäude</h1>
           {poi.map((poi) => (
             <div name={poi.name} key={poi.id}>
               <h2>{poi.name}</h2>

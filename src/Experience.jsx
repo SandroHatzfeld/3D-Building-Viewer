@@ -28,12 +28,12 @@ const ACTION = Object.freeze({
   TOUCH_ZOOM_TRUCK: 8192,
   TOUCH_ZOOM_OFFSET: 16384,
   TOUCH_ZOOM_ROTATE: 32768,
-});
+})
 
 export default function Experience() {
   const cameraRef = useRef()
   const [degraded, setDegraded] = useState(false)
-
+  
   useEffect(() => {
     const unsubscribePhase = useRoom.subscribe(
       (state) => state.phase,
@@ -90,25 +90,38 @@ export default function Experience() {
         environmentIntensity={0.6}
       />
       <color args={["#f0e2ce"]} attach="background" />
-      <directionalLight
-        castShadow
-        intensity={6}
-        position={[36, 16, 28]}
-        shadow-mapSize-width={1024 * 4}
-        shadow-mapSize-height={1024 * 4}
-        shadow-camera-near={0}
-        shadow-camera-far={300}
-        shadow-camera-top={20}
-        shadow-camera-right={50}
-        shadow-camera-bottom={-40}
-        shadow-camera-left={-60}
-        shadow-bias={-0.0007}
-      />
       <PerformanceMonitor onDecline={() => setDegraded(true)}>
         {degraded ? (
-          ""
+          <directionalLight
+            castShadow
+            intensity={6}
+            position={[36, 16, 28]}
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+            shadow-camera-near={0}
+            shadow-camera-far={300}
+            shadow-camera-top={20}
+            shadow-camera-right={50}
+            shadow-camera-bottom={-40}
+            shadow-camera-left={-60}
+            shadow-bias={-0.0007}
+          />
         ) : (
           <>
+            <directionalLight
+              castShadow
+              intensity={6}
+              position={[36, 16, 28]}
+              shadow-mapSize-width={1024 * 4}
+              shadow-mapSize-height={1024 * 4}
+              shadow-camera-near={0}
+              shadow-camera-far={300}
+              shadow-camera-top={20}
+              shadow-camera-right={50}
+              shadow-camera-bottom={-40}
+              shadow-camera-left={-60}
+              shadow-bias={-0.0007}
+            />
             <SoftShadows samples={10} size={50} />
           </>
         )}
